@@ -13,6 +13,8 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import {toggleHeader} from "../actions";
+import connect from "react-redux/es/connect/connect";
 
 const Header = ({ toggle, isOpen, appName, simpleItems, dropDownItems }) => (
   <div>
@@ -65,4 +67,17 @@ Header.propTypes = {
   }).isRequired).isRequired
 };
 
-export default Header
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
+  isOpen: state.headIsOpen
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  ...ownProps,
+  toggle: () => dispatch(toggleHeader)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

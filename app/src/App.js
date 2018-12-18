@@ -1,11 +1,11 @@
 import React from 'react';
-import HeadContainer from './containers/HeaderContainer'
+import {view as Header} from './header'
 
 import { appName, simpleItems, dropDownItems } from './config'
 
 const App = () =>(
   <div>
-    <HeadContainer appName={appName} simpleItems={simpleItems} dropDownItems={dropDownItems} />
+    <Header appName={appName} simpleItems={simpleItems} dropDownItems={dropDownItems} />
   </div>
 );
 
