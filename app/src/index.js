@@ -10,7 +10,9 @@ import {appName, theme} from './config'
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
   <Provider store={store}>
-    {App(appName)}
+    {App({
+      appName: appName
+    })}
   </Provider>
   </MuiThemeProvider>,
   document.getElementById('root')

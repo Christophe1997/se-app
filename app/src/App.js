@@ -3,7 +3,7 @@ import {view as Header} from './header'
 import {view as Form} from './sideBar'
 
 
-const App = (appName) =>(
+const App = ({appName}) =>(
   <div>
     <Header appName={appName} />
     <Form/>
