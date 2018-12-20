@@ -1,80 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Collapse,
-  Navbar,
-  Nav,
-  NavbarBrand,
-  NavbarToggler,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap';
-import {toggleHeader} from "../actions";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import connect from "react-redux/es/connect/connect";
 
-const Header = ({ toggle, isOpen, appName, simpleItems, dropDownItems }) => (
+const Header = ({ appName }) => (
   <div>
-    <Navbar color="light" light expand="md">
-      <NavbarBrand href="#">{appName}</NavbarBrand>
-      <NavbarToggler onClick={toggle} />
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="ml-auto" navbar>
-          {
-            simpleItems.map(elem =>
-              <NavItem>
-                <NavLink href={elem.link}>{elem.name}</NavLink>
-              </NavItem>
-            )
-          }
-          {
-            dropDownItems.map(elem =>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  {elem.name}
-                </DropdownToggle>
-                <DropdownMenu right>
-                  {
-                    elem.drops.map(elem =>
-                      <DropdownItem>
-                        {elem}
-                      </DropdownItem>
-                    )
-                  }
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            )
-          }
-        </Nav>
-      </Collapse>
-    </Navbar>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton color="inherit" aria-label="Menu">
+          <MenuIcon/>
+        </IconButton>
+        <Typography variant="h6" color="inherit">
+          {appName}
+        </Typography>
+        <Button color="inherit">登入</Button>
+      </Toolbar>
+    </AppBar>
   </div>
 );
 
 Header.propTypes = {
-  toggle: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  simpleItems: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  dropDownItems: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    drops: PropTypes.array.isRequired
-  }).isRequired).isRequired
+  appName: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  ...ownProps,
-  isOpen: state.headIsOpen
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  ...ownProps,
-  toggle: () => dispatch(toggleHeader)
 });
 
 export default connect(

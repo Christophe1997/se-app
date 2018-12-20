@@ -1,11 +1,13 @@
 import React from 'react';
 import {view as Header} from './header'
+import {view as Form} from './sideBar'
 
-import { appName, simpleItems, dropDownItems } from './config'
+import { appName } from './config'
 
 const App = () =>(
   <div>
-    <Header appName={appName} simpleItems={simpleItems} dropDownItems={dropDownItems} />
+    <Header appName={appName} />
+    <Form/>
   </div>
 );
 
