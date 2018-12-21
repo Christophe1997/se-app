@@ -1,10 +1,13 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 /**
  * @param{Object} values: keys = [name, gender, visitCardNumber, outpatientNumber, admissionNumber]
@@ -70,11 +73,11 @@ const textField = ({label, input, meta: {touched, invalid, error}, ...custom}) =
   />
 );
 
-const radioField = ({ input, ...rest }) => (
+const radioField = ({input, ...rest}) => (
   <FormControl>
     <RadioGroup {...input} {...rest}>
-      <FormControlLabel value="female" control={<Radio />} label="Female" />
-      <FormControlLabel value="male" control={<Radio />} label="Male" />
+      <FormControlLabel value="female" control={<Radio/>} label="Female"/>
+      <FormControlLabel value="male" control={<Radio/>} label="Male"/>
     </RadioGroup>
   </FormControl>
 );
@@ -83,26 +86,37 @@ const radioField = ({ input, ...rest }) => (
 const SearchForm = ({handleSubmit, pristine, reset, submitting}) => (
   <form onSubmit={handleSubmit}>
     <div>
-    <Field name="name" label="姓名" placeHolder="请输入姓名" component={textField}/>
+      <Field name="name" label="姓名" component={textField}/>
     </div>
+    <br/>
     <div>
-    <Field name="visitCardNumber" label="就诊卡号" placeHolder="请输入就诊卡号" component={textField}/>
+      <Field name="visitCardNumber" label="就诊卡号" component={textField}/>
     </div>
+    <br/>
     <div>
-    <Field name="outpatientNumber" label="门诊号" placeHolder="请输入门诊号" component={textField}/>
+      <Field name="outpatientNumber" label="门诊号" component={textField}/>
     </div>
+    <br/>
     <div>
-    <Field name="outpatientNumber" label="住院号" placeHolder="请输入住院号" component={textField}/>
+      <Field name="admissionNumber" label="住院号" component={textField}/>
     </div>
+    <br/>
     <div>
       <Field name="gender" component={radioField}>
         <Radio value="female" label="女"/>
         <Radio value="male" label="男"/>
       </Field>
     </div>
+    <br/>
     <div>
-      <button type="submit" disabled={submitting}>查询</button>
-      <button type="button" disabled={pristine || submitting} onClick={reset}>清除输入</button>
+      <Button variant="contained" color="primary" type="submit" disabled={submitting}>
+        <SearchIcon/>
+        查询
+      </Button>
+      <Button variant="contained" color="primary" type="button" disabled={pristine || submitting} onClick={reset}>
+        <DeleteIcon/>
+        清除输入
+      </Button>
     </div>
   </form>
 );

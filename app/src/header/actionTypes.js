@@ -1,1 +1,2 @@
-export const TOGGLE_HEADER = 'TOGGLE_HEADER';
+export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
+export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
