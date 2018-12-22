@@ -8,6 +8,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import DeleteIcon from '@material-ui/icons/Delete';
+import {fetchPatient} from "../actions";
 
 /**
  * @param{Object} values: keys = [name, gender, visitCardNumber, outpatientNumber, admissionNumber]
@@ -125,5 +126,5 @@ export default reduxForm({
   form: 'SearchForm',
   validate,
   warn,
-  onSubmit: (values) => {console.log(values)}
+  onSubmit: (values) => fetchPatient(values)
 })(SearchForm)
