@@ -71,6 +71,7 @@ public class PatientController {
         Patient updatedPatient = repository.findById(id)
                 .map(patient -> {
                     copyProperties(newPatient, patient);
+                    patient.setId(id);
                     return repository.save(patient);
                 })
                 .orElseGet(() -> {
