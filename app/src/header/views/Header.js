@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import connect from "react-redux/es/connect/connect";
 
-import './style.css'
 import {closeSideBar, openSideBar} from "../actions";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import SearchForm from "./SearchForm";
