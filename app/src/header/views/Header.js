@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import {withStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -13,21 +15,91 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import SearchForm from "./SearchForm";
 import Drawer from "@material-ui/core/Drawer/Drawer";
 
-const Header = ({appName, handleSideBarOpen, handleSideBarClose, isSideBarOpen}) => (
+const drawerWidth = 240;
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
+});
+
+const Header = ({appName, classes, theme, handleSideBarOpen, handleSideBarClose, isSideBarOpen}) => (
   <div>
-    <AppBar position="static">
+    <AppBar position="fixed"
+            className={classNames(classes.appBar, {
+              [classes.appBarShift]: isSideBarOpen
+            })}
+    >
       <Toolbar disableGutters={!isSideBarOpen}>
-        <IconButton className={isSideBarOpen && "hide"}
+        <IconButton className={classNames(classes.menuButton, isSideBarOpen && classes.hide)}
                     color="inherit" aria-label="Open sideBar" onClick={handleSideBarOpen}>
           <MenuIcon/>
         </IconButton>
-        <Typography variant="h6" color="inherit">
+        <Typography variant="h6" color="inherit" noWrap>
           {appName}
         </Typography>
       </Toolbar>
     </AppBar>
-    <Drawer variant="persistent" anchor="left" open={isSideBarOpen}>
-      <div>
+    <Drawer variant="persistent"
+            anchor="left"
+            open={isSideBarOpen}
+            className={classes.drawer}
+            classes={{
+              paper: classes.drawerPaper
+            }}
+    >
+      <div className={classes.drawerHeader}>
         <IconButton onClick={handleSideBarClose}>
           <ChevronLeftIcon/>
         </IconButton>
@@ -46,9 +118,12 @@ Header.propTypes = {
   isSideBarOpen: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = (state) => {console.log(state.isSideBarOpen); return ({
-  isSideBarOpen: state.isSideBarOpen
-})};
+const mapStateToProps = (state) => {
+  console.log(state.isSideBarOpen);
+  return ({
+    isSideBarOpen: state.isSideBarOpen
+  })
+};
 
 const mapDispatchToProps = (dispatch) => ({
   handleSideBarOpen: () => dispatch(openSideBar()),
@@ -58,4 +133,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(withStyles(styles, {withTheme: true})(Header));

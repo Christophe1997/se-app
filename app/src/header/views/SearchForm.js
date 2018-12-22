@@ -75,9 +75,9 @@ const textField = ({label, input, meta: {touched, invalid, error}, ...custom}) =
 
 const radioField = ({input, ...rest}) => (
   <FormControl>
-    <RadioGroup {...input} {...rest}>
-      <FormControlLabel value="female" control={<Radio/>} label="Female"/>
-      <FormControlLabel value="male" control={<Radio/>} label="Male"/>
+    <RadioGroup row={true} {...input} {...rest}>
+      <FormControlLabel value="female" control={<Radio/>} label="女"/>
+      <FormControlLabel value="male" control={<Radio/>} label="男"/>
     </RadioGroup>
   </FormControl>
 );
