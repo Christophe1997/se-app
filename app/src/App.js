@@ -1,10 +1,10 @@
 import React from 'react';
-import {view as Header} from './header'
+import {view as SearchPage} from './searchPage'
 
 
 const App = ({appName}) =>(
   <div>
-    <Header appName={appName} />
+    <SearchPage appName={appName} />
   </div>
 );
 

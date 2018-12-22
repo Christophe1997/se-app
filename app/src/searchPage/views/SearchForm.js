@@ -124,5 +124,6 @@ const SearchForm = ({handleSubmit, pristine, reset, submitting}) => (
 export default reduxForm({
   form: 'SearchForm',
   validate,
-  warn
+  warn,
+  onSubmit: (values) => {console.log(values)}
 })(SearchForm)

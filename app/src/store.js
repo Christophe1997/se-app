@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import isSideBarOpen from "./header/reducer";
+import isSideBarOpen from "./searchPage/reducer";
 import {reducer as formReducer} from 'redux-form';
 
 const reducer = combineReducers({

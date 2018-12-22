@@ -73,8 +73,8 @@ const styles = theme => ({
   },
 });
 
-const Header = ({appName, classes, theme, handleSideBarOpen, handleSideBarClose, isSideBarOpen}) => (
-  <div>
+const Page = ({appName, classes, theme, handleSideBarOpen, handleSideBarClose, isSideBarOpen}) => (
+  <div className={classes.root}>
     <AppBar position="fixed"
             className={classNames(classes.appBar, {
               [classes.appBarShift]: isSideBarOpen
@@ -107,18 +107,24 @@ const Header = ({appName, classes, theme, handleSideBarOpen, handleSideBarClose,
         <SearchForm/>
       </div>
     </Drawer>
+    <main className={classNames(classes.content, {
+      [classes.contentShift]: isSideBarOpen
+    })}
+    >
+    </main>
   </div>
 );
 
-Header.propTypes = {
+Page.propTypes = {
   appName: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   handleSideBarOpen: PropTypes.func.isRequired,
   handleSideBarClose: PropTypes.func.isRequired,
   isSideBarOpen: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.isSideBarOpen);
   return ({
     isSideBarOpen: state.isSideBarOpen
   })
@@ -132,4 +138,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles, {withTheme: true})(Header));
+)(withStyles(styles, {withTheme: true})(Page));
