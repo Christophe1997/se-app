@@ -1,9 +1,11 @@
 import {combineReducers, createStore, compose, applyMiddleware} from "redux";
 import {reducer as searchPageReducer} from "./searchPage";
+import {reducer as tableReducer} from './table';
 import {reducer as formReducer} from 'redux-form';
 import thunkMiddleware from 'redux-thunk';
 
 const reducer = combineReducers({
+  table: tableReducer,
   searchPage: searchPageReducer,
   form: formReducer
 });

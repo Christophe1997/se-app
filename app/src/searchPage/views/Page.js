@@ -74,7 +74,16 @@ const styles = theme => ({
   },
 });
 
-const Page = ({appName, classes, theme, handleSideBarOpen, handleSideBarClose, isSideBarOpen}) => (
+const Page = ({
+                appName,
+                classes,
+                theme,
+                data,
+                error,
+                handleSideBarOpen,
+                handleSideBarClose,
+                isSideBarOpen
+              }) => (
   <div className={classes.root}>
     <AppBar position="fixed"
             className={classNames(classes.appBar, {
@@ -112,8 +121,8 @@ const Page = ({appName, classes, theme, handleSideBarOpen, handleSideBarClose, i
       [classes.contentShift]: isSideBarOpen
     })}
     >
-      <div className={classes.drawerHeader} />
-      <PatientList status={STATUS.LOADING}/>
+      <div className={classes.drawerHeader}/>
+      <PatientList data={data} error={error} status={STATUS.LOADING}/>
     </main>
   </div>
 );
