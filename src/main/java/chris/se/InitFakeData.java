@@ -31,16 +31,15 @@ public class InitFakeData {
             data.add(new String[]{"Halle", "false", "888888"});
             data.add(new String[]{"Ianthe", "false", "999999"});
 
-            data.forEach(elem -> {
-                log.info("Preloading Patient " + patientRepository.save(
-                        new Patient(elem[0],
-                                elem[1].equals("true") ? Utils.MALE : Utils.FEMALE,
-                                elem[2], elem[2], elem[2])));
-                log.info("Preloading keyword " + keyWordRepository.save(
-                        new KeyWord(elem[0],
-                                elem[1].equals("true") ? Utils.MALE : Utils.FEMALE,
-                                elem[2], elem[2], elem[2])));
-            });
+            data.forEach(elem -> log.info("Preloading Patient " + patientRepository.save(
+                    new Patient(elem[0],
+                            elem[1].equals("true") ? Utils.MALE : Utils.FEMALE,
+                            elem[2], elem[2], elem[2]))));
+
+            data.forEach(elem -> log.info("Preloading keyword " + keyWordRepository.save(
+                    new KeyWord(elem[0],
+                            elem[1].equals("true") ? Utils.MALE : Utils.FEMALE,
+                            elem[2], elem[2], elem[2]))));
         };
     }
 }

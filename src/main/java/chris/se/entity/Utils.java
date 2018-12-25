@@ -6,7 +6,7 @@ public class Utils {
     public static final boolean MALE = true;
 
     public static Long keyWordToPatient(Long keyWordId) {
-        return keyWordId;
+        return keyWordId - 9;
     }
 
 }
