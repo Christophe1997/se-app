@@ -120,6 +120,8 @@ export default (state = {
         data.push(state.data[idx])
       });
       console.log(data);
+      // TODO
+      // Open in new page with select patient data
       return {
         ...state
       };
