@@ -7,13 +7,21 @@ import CheckBox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 
+const ROWS = [
+  {id: "name", numeric: false, disablePadding: true, label: "姓名"},
+  {id: "gender", numeric: false, disablePadding: false, label: "性别"},
+  {id: "visitCardNumber", numeric: false, disablePadding: false, label: "就诊卡号"},
+  {id: "outpatientNumber", numeric: false, disablePadding: false, label: "门诊号"},
+  {id: "admissionNumber", numeric: false, disablePadding: false, label: "住院号"}
+];
+
 class Head extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, rows } = this.props;
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, } = this.props;
 
     return (
       <TableHead>
@@ -25,7 +33,7 @@ class Head extends React.Component {
               onChange={onSelectAllClick}
             />
           </TableCell>
-          {rows.map(row => {
+          {ROWS.map(row => {
             return (
               <TableCell
                 key={row.id}
@@ -62,12 +70,6 @@ Head.propTypes = {
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
-  rows: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    numeric: PropTypes.bool.isRequired,
-    disablePadding: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired
-  }).isRequired).isRequired
 };
 
 export default Head;

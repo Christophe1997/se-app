@@ -1,4 +1,15 @@
-import {CLOSE_SIDEBAR, FETCH_FAILURE, FETCH_STARTED, FETCH_SUCCESS, OPEN_SIDEBAR} from "./actionTypes";
+import {
+  CLOSE_SIDEBAR,
+  FETCH_FAILURE,
+  FETCH_STARTED,
+  FETCH_SUCCESS,
+  OPEN_SIDEBAR,
+  CHANGE_PAGE,
+  CHANGE_PER_PAGE,
+  CLICK_ONE,
+  REQUEST_SORT,
+  SELECT_ALL, SELECT_OPEN
+} from "./actionTypes";
 
 export const openSideBar = () => ({
   type: OPEN_SIDEBAR,
@@ -25,9 +36,13 @@ export const fetchPatientFailure = (error) => ({
 
 export const fetchPatient = (values) => {
   return (dispatch) => {
-
-    const queryString = Object.keys(values).map(key =>
-      encodeURIComponent(key) + '=' + encodeURIComponent(values[key])).join('&');
+    const queryString = Object.keys(values).map(key => {
+      let value = values[key];
+      if (key === "gender") {
+        value = value !== "female";
+      }
+      return encodeURIComponent(key) + '=' + encodeURIComponent(value)
+    }).join('&');
     const apiUrl = `/api/patients/keyword?${queryString}`;
 
     dispatch(fetchPatientStarted());
@@ -47,3 +62,34 @@ export const fetchPatient = (values) => {
 
   };
 };
+
+export const requestSort = (event, property) => ({
+  type: REQUEST_SORT,
+  event,
+  property
+});
+
+export const selectAll = event => ({
+  type: SELECT_ALL,
+  event
+});
+
+export const clickOne = (event, id) => ({
+  type: CLICK_ONE,
+  event,
+  id
+});
+
+export const changePage = (event, page) => ({
+  type: CHANGE_PAGE,
+  page
+});
+
+export const changePerPage = (event) => ({
+  type: CHANGE_PER_PAGE,
+  event
+});
+
+export const selectOpen = () => ({
+  type: SELECT_OPEN,
+});

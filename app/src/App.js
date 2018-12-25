@@ -1,6 +1,5 @@
 import React from 'react';
-import {view as SearchPage} from './searchPage'
-
+import {SearchPage} from './containers'
 
 const App = ({appName}) =>(
   <div>

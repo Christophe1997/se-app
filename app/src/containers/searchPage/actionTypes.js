@@ -1,0 +1,13 @@
+export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
+export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
+
+export const FETCH_STARTED = 'PATIENT/FETCH_STARTED';
+export const FETCH_SUCCESS = 'PATIENT/FETCH_SUCCESS';
+export const FETCH_FAILURE = 'PATIENT/FETCH_FAILURE';
+
+export const REQUEST_SORT = 'REQUEST_SORT';
+export const SELECT_ALL = 'SELECT_ALL';
+export const CLICK_ONE = 'CLICK_ONE';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
+export const CHANGE_PER_PAGE = 'CHANGE_PER_PAGE';
+export const SELECT_OPEN = 'SELECT_OPEN';

@@ -1,14 +1,62 @@
-import {CHANGE_PAGE, CHANGE_PER_PAGE, CLICK_ONE, REQUEST_SORT, SELECT_ALL} from "./actionTypes";
+import {
+  CLOSE_SIDEBAR,
+  FETCH_FAILURE,
+  FETCH_STARTED,
+  FETCH_SUCCESS,
+  OPEN_SIDEBAR,
+  CHANGE_PAGE,
+  CHANGE_PER_PAGE,
+  CLICK_ONE,
+  REQUEST_SORT,
+  SELECT_ALL, SELECT_OPEN
+} from "./actionTypes";
+import {STATUS} from "./constants";
 
 export default (state = {
+  isSideBarOpen: true,
+  status: STATUS.LOADING,
+  data: [],
   order: 'asc',
   orderBy: 'name',
   selected: [],
-  data: [],
   page: 0,
-  rowsPerPage: 5
+  rowsPerPage: 5,
+  error: ''
 }, action) => {
   switch (action.type) {
+
+    case OPEN_SIDEBAR:
+      return {
+        ...state,
+        isSideBarOpen: true
+      };
+
+    case CLOSE_SIDEBAR:
+      return {
+        ...state,
+        isSideBarOpen: false
+      };
+
+    case FETCH_STARTED:
+      return {
+        ...state,
+        status: STATUS.LOADING
+      };
+
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        status: STATUS.SUCCESS,
+        data: action.result
+      };
+
+    case FETCH_FAILURE:
+      return {
+        ...state,
+        status: FETCH_FAILURE,
+        error: action.error
+      };
+
     case REQUEST_SORT:
       const orderBy = action.property;
       let order = 'desc';
@@ -34,11 +82,14 @@ export default (state = {
       };
 
     case CLICK_ONE:
-      const { selected } = state;
-      const selectedIndex = selected.indexOf(action.id);
+      const { selected }= state;
+      const { id } = action;
+      const selectedIndex = selected.indexOf(id);
       let newSelected = [];
       if (selectedIndex === -1) {
-        newSelected = newSelected.concat(selected.slice(1));
+        newSelected = newSelected.concat(selected, id);
+      } else if (selectedIndex === 0) {
+        newSelected = newSelected.concat(selected.slice(1))
       } else if (selectedIndex === selected.length - 1) {
         newSelected = newSelected.concat(selected.slice(0, -1));
       } else if (selectedIndex > 0) {
@@ -63,9 +114,19 @@ export default (state = {
         rowsPerPage: action.event.target.value
       };
 
+    case SELECT_OPEN:
+      let data = [];
+      state.selected.forEach((_, idx) => {
+        data.push(state.data[idx])
+      });
+      console.log(data);
+      return {
+        ...state
+      };
+
     default:
       return {
         ...state
       };
   }
-}
+};

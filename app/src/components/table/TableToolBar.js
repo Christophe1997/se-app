@@ -45,7 +45,7 @@ const TableToolBar = ({title, handleSelect, numSelected, classes}) => (
       {
         numSelected > 0 ? (
           <Typography color='inherit' variant='subtitle1'>
-            {numSelected} selected
+            {numSelected} 选中
           </Typography>
         ) : (
           <Typography variant='h6' id='tableTitle'>

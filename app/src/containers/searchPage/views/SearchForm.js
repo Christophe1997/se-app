@@ -14,13 +14,13 @@ import {fetchPatient} from "../actions";
  * @param{Object} values: keys = [name, gender, visitCardNumber, outpatientNumber, admissionNumber]
  */
 
-const NAME_MIN_LENGTH = 10;
+const NAME_MIN_LENGTH = 2;
 const NAME_MAX_LENGTH = 10;
-const VISIT_CARD_NUMBER_MIN_LENGTH = 20;
+const VISIT_CARD_NUMBER_MIN_LENGTH = 2;
 const VISIT_CARD_NUMBER_MAX_LENGTH = 20;
-const OUTPATIENT_NUMBER_MIN_LENGTH = 20;
+const OUTPATIENT_NUMBER_MIN_LENGTH = 2;
 const OUTPATIENT_NUMBER_MAX_LENGTH = 20;
-const ADMISSION_NUMBER_MIN_LENGTH = 20;
+const ADMISSION_NUMBER_MIN_LENGTH = 2;
 const ADMISSION_NUMBER_MAX_LENGTH = 20;
 
 const validate = values => {
@@ -126,5 +126,5 @@ export default reduxForm({
   form: 'SearchForm',
   validate,
   warn,
-  onSubmit: (values) => fetchPatient(values)
+  onSubmit: (data, dispatch) => dispatch(fetchPatient(data))
 })(SearchForm)
