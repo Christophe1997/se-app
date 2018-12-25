@@ -25,4 +25,15 @@ public class KeyWord {
     private String outpatientNumber; // 门诊号
     private String admissionNumber; // 住院号
 
+    public KeyWord(String name,
+                   Boolean gender,
+                   String visitCardNumber,
+                   String outpatientNumber,
+                   String admissionNumber) {
+        this.name = name;
+        this.gender = gender;
+        this.visitCardNumber = visitCardNumber;
+        this.outpatientNumber = outpatientNumber;
+        this.admissionNumber = admissionNumber;
+    }
 }

@@ -79,4 +79,15 @@ public class Patient {
     private @Temporal(TemporalType.TIMESTAMP) Date registrationTime; // 登记时间
     private @Temporal(TemporalType.TIMESTAMP) Date downTime; // 停用时间
 
+    public Patient(String name,
+                   Boolean gender,
+                   String visitCardNumber,
+                   String outpatientNumber,
+                   String admissionNumber) {
+        this.name = name;
+        this.gender = gender;
+        this.visitCardNumber = visitCardNumber;
+        this.outpatientNumber = outpatientNumber;
+        this.admissionNumber = admissionNumber;
+    }
 }
