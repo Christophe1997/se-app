@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * <p>Table keyword</p>
+ * TODO: Add table name and column name
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

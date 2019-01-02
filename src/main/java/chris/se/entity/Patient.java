@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-
+/**
+ * <p>Table patient</p>
+ * TODO: Add table name and column name
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
