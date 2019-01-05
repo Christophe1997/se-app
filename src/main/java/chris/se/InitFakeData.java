@@ -34,7 +34,8 @@ public class InitFakeData {
             data.forEach(elem -> log.info("Preloading Patient " + patientRepository.save(
                     new Patient(elem[0],
                             elem[1].equals("true") ? Utils.MALE : Utils.FEMALE,
-                            elem[2], elem[2], elem[2]))));
+                            Long.valueOf(elem[2]), Long.valueOf(elem[2]), Long.valueOf(elem[2])
+                    ))));
 
             data.forEach(elem -> log.info("Preloading keyword " + keyWordRepository.save(
                     new KeyWord(elem[0],

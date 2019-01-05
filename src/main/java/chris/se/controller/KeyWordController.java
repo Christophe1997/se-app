@@ -39,7 +39,7 @@ public class KeyWordController {
     @GetMapping("/patients/keyword")
     public Resources<Resource<Patient>> filter(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "gender", required = false) Boolean gender,
+            @RequestParam(value = "gender", required = false) String gender,
             @RequestParam(value = "visitCardNumber", required = false) String visitCardNumber,
             @RequestParam(value = "outpatientNumber", required = false) String outpatientNumber,
             @RequestParam(value = "admissionNumber", required = false) String addmissionNumber) {

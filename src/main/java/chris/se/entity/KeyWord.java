@@ -23,14 +23,14 @@ public class KeyWord {
     private Long id;
 
     private String name; // 姓名
-    private Boolean gender; // 性别
+    private String gender; // 性别
 
     private String visitCardNumber; // 就诊卡号
     private String outpatientNumber; // 门诊号
     private String admissionNumber; // 住院号
 
     public KeyWord(String name,
-                   Boolean gender,
+                   String gender,
                    String visitCardNumber,
                    String outpatientNumber,
                    String admissionNumber) {

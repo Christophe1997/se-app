@@ -2,12 +2,12 @@ package chris.se.entity;
 
 /**
  * <p>Utils for entity</p>
- * for example, you should alwasy use {@code Utils.FEMALE} for female not {@code false}
+ * for example, you should alwasy use {@code Utils.FEMALE} for female
  */
 public class Utils {
 
-    public static final boolean FEMALE = false;
-    public static final boolean MALE = true;
+    public static final String FEMALE = "女";
+    public static final String MALE = "男";
 
     /**
      * <p>Convert {@link chris.se.entity.KeyWord} id to {@link chris.se.entity.Patient} id</p>

@@ -39,7 +39,7 @@ export const fetchPatient = (values) => {
     const queryString = Object.keys(values).map(key => {
       let value = values[key];
       if (key === "gender") {
-        value = value !== "female";
+        value = value === "female" ? "女" : "男";
       }
       return encodeURIComponent(key) + '=' + encodeURIComponent(value)
     }).join('&');

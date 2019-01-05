@@ -16,7 +16,7 @@ public interface KeyWordRepository extends JpaRepository<KeyWord, Long> {
             "and (:admissionNumber is null or t.admissionNumber = :admissionNumber) ")
     List<KeyWord> findByMultipleCondition(
             @Param(value = "name") String name,
-            @Param(value = "gender") Boolean gender,
+            @Param(value = "gender") String gender,
             @Param(value = "visitCardNumber") String visitCardNumber,
             @Param(value = "outpatientNumber") String outpatientNumber,
             @Param(value = "admissionNumber") String admissionNumber);
