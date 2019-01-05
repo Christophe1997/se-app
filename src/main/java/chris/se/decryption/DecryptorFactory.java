@@ -16,6 +16,12 @@ public class DecryptorFactory<S, T> {
         return new IdentityDecryptor<>();
     }
 
-    // TODO
-    // add getDecryptor
+    /**
+     * <p>Get the SM4 Decryptor</p>
+     * @param secret secret key
+     * @return SM4 decryptor with given key
+     */
+    public Decryptor<String, String> getSm4Decryptor(String secret) {
+        return new Sm4Decryptor(secret);
+    }
 }

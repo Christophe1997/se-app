@@ -11,6 +11,6 @@ public interface Encryptor<S, T> {
      * @param source source plaintext
      * @return The target ciphertext
      */
-    T encrypt(S source);
+    T encrypt(S source) throws Exception;
 
 }

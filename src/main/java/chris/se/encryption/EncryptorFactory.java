@@ -16,6 +16,13 @@ public class EncryptorFactory<S, T> {
         return new IdentityEncryptor<>();
     }
 
-    // TODO
-    // add getEncryptor.
+    /**
+     * <p>Get the SM4 Encryptor</p>
+     * @param secret secret key
+     * @return SM4 encryptor with given key
+     */
+    public Encryptor<String, String> getSm4Encryptor(String secret) {
+        return new Sm4Encryptor(secret);
+    }
+
 }

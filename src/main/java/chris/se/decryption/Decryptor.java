@@ -11,6 +11,6 @@ public interface Decryptor<S, T> {
      * @param target target ciphertext
      * @return The source plaintext
      */
-    S decrypt(T target);
+    S decrypt(T target) throws Exception;
 
 }
