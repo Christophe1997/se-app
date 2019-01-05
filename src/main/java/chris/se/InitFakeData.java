@@ -13,11 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
+//@Configuration
 @Slf4j
 public class InitFakeData {
 
-    @Bean
+//    @Bean
     CommandLineRunner initDatabase(PatientRepository patientRepository, KeyWordRepository keyWordRepository) {
         return args -> {
             List<String[]> data = new ArrayList<>();
