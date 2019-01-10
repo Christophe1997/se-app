@@ -28,10 +28,11 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-hateoas')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation('org.bouncycastle:bcprov-jdk16:1.46')
+    implementation('org.bouncycastle:bcprov-jdk15on:1.60')
 //    runtimeOnly('mysql:mysql-connector-java')
     runtimeOnly(files('libs/ojdbc8.jar'))
     compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
 }

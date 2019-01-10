@@ -52,6 +52,7 @@ export const fetchPatient = (values) => {
         throw new Error('Fail to get response with status ' + response.status);
       }
       response.json().then(responseJson => {
+        console.log(responseJson);
         dispatch(fetchPatientSucess(responseJson._embedded.patientList));
       }).catch(error => {
         dispatch(fetchPatientFailure(error));

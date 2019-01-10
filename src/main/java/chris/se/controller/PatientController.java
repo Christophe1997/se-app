@@ -9,6 +9,7 @@ import chris.se.repository.PatientRepository;
 import chris.se.resourceAssembler.PatientResourceAssembler;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,7 @@ public class PatientController {
 
     }
 
-    @GetMapping("/patients/{id}")
+    @GetMapping(value = "/patients/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, "application/hal+json"})
     public Resource<Patient> one(@PathVariable Long id) {
 
         Patient patient = repository.findById(id)

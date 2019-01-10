@@ -15,7 +15,7 @@ public class Utils {
      * @return An id for {@link chris.se.entity.Patient} whether it exists or not.
      */
     public static Long keyWordToPatient(Long keyWordId) {
-        return keyWordId - 9;
+        return keyWordId;
     }
 
 }

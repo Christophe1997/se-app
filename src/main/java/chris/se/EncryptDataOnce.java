@@ -11,22 +11,23 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 @Slf4j
-public class EncryptData {
+public class EncryptDataOnce {
 
     private @Value("${cryptogram.secret}")
     String secret;
     private final EncryptorFactory<String, String> factory = new EncryptorFactory<>();
 
-    @Bean
+//    @Bean(destroyMethod = "")
     CommandLineRunner encryptData(PatientRepository patientRepository,
                                   KeyWordRepository keyWordRepository) {
         Encryptor<String, String> encryptor = factory.getSm4Encryptor(secret);
         return args -> {
+            log.info("Start encryption");
             patientRepository.findAll()
                     .forEach(patient -> {
-                        log.info("Encrypt patient" + patient.getId());
+                        log.info("Encrypt patient: " + patient.getId() + "|" + patient.getName());
                         try {
                             keyWordRepository.save(new KeyWord(
                                     patient.getId(),
@@ -37,7 +38,7 @@ public class EncryptData {
                                     encryptor.encrypt(String.valueOf(patient.getAdmissionNumber()))
                             ));
                         } catch (Exception ex) {
-                            System.exit(1);
+                            log.warn("Encrypted failed with " + patient.getId() + ": " + ex.getMessage());
                         }
                     });
             log.info("Encryption finished");
